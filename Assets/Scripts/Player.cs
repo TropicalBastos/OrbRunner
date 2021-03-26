@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Transform cameraTransform;
-
+    public Transform cameraPivotTransform;
     public float speed = 5;
 
     private Rigidbody ballRigid;
@@ -24,14 +23,16 @@ public class Player : MonoBehaviour
 
         if (moveHorizontal == 0 && moveVertical == 0) {
             ballRigid.Sleep();
+        } else {
+            // Movement
+            Vector3 forwardMovement = cameraPivotTransform.forward.normalized * moveVertical;
+            Vector3 sidewaysMovement = cameraPivotTransform.right.normalized * moveHorizontal;
+            Vector3 movement = forwardMovement + sidewaysMovement;
+            ballRigid.AddForce(movement * speed);
+
+            // Rotate forward direction
+            Vector3 newForwardDirection = new Vector3(movement.normalized.x, 0, movement.normalized.z);
+            transform.forward = newForwardDirection;
         }
-
-        Vector3 forwardMovement = cameraTransform.forward.normalized * moveVertical;
-        Vector3 sidewaysMovement = cameraTransform.right.normalized * moveHorizontal;
-        Vector3 movement = forwardMovement + sidewaysMovement;
-        Vector3 rotationVector = Vector3.RotateTowards(transform.forward, -cameraTransform.forward, speed * Time.deltaTime, 0.0f);
-        transform.rotation = Quaternion.LookRotation(rotationVector);
-
-        ballRigid.AddForce(movement * speed);
     }
 }
