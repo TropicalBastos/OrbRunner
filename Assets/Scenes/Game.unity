@@ -226,7 +226,7 @@ PrefabInstance:
     - target: {fileID: 4695067873823778162, guid: ee75b974ff76f409781d82061f82002e,
         type: 3}
       propertyPath: m_Text
-      value: Resume
+      value: RESUME
       objectReference: {fileID: 0}
     - target: {fileID: 4695067873958371457, guid: ee75b974ff76f409781d82061f82002e,
         type: 3}
@@ -458,7 +458,7 @@ PrefabInstance:
     - target: {fileID: 4695067873823778162, guid: ee75b974ff76f409781d82061f82002e,
         type: 3}
       propertyPath: m_Text
-      value: Quit
+      value: QUIT
       objectReference: {fileID: 0}
     - target: {fileID: 4695067873958371457, guid: ee75b974ff76f409781d82061f82002e,
         type: 3}
