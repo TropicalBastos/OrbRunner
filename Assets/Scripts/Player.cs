@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
         float moveVertical = Input.GetAxis("Vertical");
 
         if (moveHorizontal == 0 && moveVertical == 0) {
-            ballRigid.Sleep();
+            ballRigid.velocity = Vector3.zero;
         } else {
             // Movement
             Vector3 forwardMovement = cameraPivotTransform.forward.normalized * moveVertical;
