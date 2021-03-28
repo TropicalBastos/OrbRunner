@@ -9,10 +9,6 @@ public class MainMenuUI : MonoBehaviour
     {
         GameObject startButtonGO = GameObject.Find("StartButton");
         Button startButton = startButtonGO.GetComponent<Button>();
-        Text text = startButton.GetComponentInChildren<Text>();
-        text.text = "START";
-        text.color = new Color(255, 255, 255);
-        text.fontSize = 40;
         startButton.onClick.AddListener(OnStartClick);
     }
 
