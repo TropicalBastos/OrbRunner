@@ -6,7 +6,6 @@ public class PauseScreen : MonoBehaviour
     private Canvas pauseScreen;
     private Button resumeButton;
     private Button quitButton;
-    private float lastTimeEscPressed = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -23,10 +22,9 @@ public class PauseScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape) && GetTimeSinceEscapeLastPressed() > 0.1)
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
             pauseScreen.enabled = !pauseScreen.enabled;
-            lastTimeEscPressed = Time.time;
 
             if (pauseScreen.enabled) 
             {
@@ -48,10 +46,5 @@ public class PauseScreen : MonoBehaviour
     {
         Time.timeScale = 1;
         pauseScreen.enabled = false;
-    }
-
-    private float GetTimeSinceEscapeLastPressed()
-    {
-        return Time.time - lastTimeEscPressed;
     }
 }
