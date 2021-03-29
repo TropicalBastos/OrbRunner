@@ -1171,7 +1171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraPivotTransform: {fileID: 1743157697}
-  speed: 50
+  speed: 180
 --- !u!1 &1241410026
 GameObject:
   m_ObjectHideFlags: 0
