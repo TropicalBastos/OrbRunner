@@ -6,13 +6,12 @@ public class Player : MonoBehaviour
 {
     public Transform cameraPivotTransform;
     public float speed = 5;
-
-    private Rigidbody ballRigid;
+    private Rigidbody playerRigid;
 
     // Start is called before the first frame update
     void Start()
     {
-        ballRigid = GetComponent<Rigidbody>();
+        playerRigid = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -21,18 +20,22 @@ public class Player : MonoBehaviour
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
+        Vector3 cameraForward = new Vector3(cameraPivotTransform.forward.normalized.x, 0, cameraPivotTransform.forward.normalized.z);
+
         if (moveHorizontal == 0 && moveVertical == 0) {
-            ballRigid.velocity = Vector3.zero;
+            playerRigid.velocity = Vector3.zero;
         } else {
             // Movement
-            Vector3 forwardMovement = cameraPivotTransform.forward.normalized * moveVertical;
-            Vector3 sidewaysMovement = cameraPivotTransform.right.normalized * moveHorizontal;
+            Vector3 forwardMovement = cameraForward.normalized * moveVertical;
+            Vector3 sidewaysMovement = cameraForward.normalized * moveHorizontal;
             Vector3 movement = forwardMovement + sidewaysMovement;
-            ballRigid.AddForce(movement * speed);
+            playerRigid.AddForce(movement * speed);
 
             // Rotate forward direction
             Vector3 newForwardDirection = new Vector3(movement.normalized.x, 0, movement.normalized.z);
-            transform.forward = newForwardDirection;
+            transform.forward = Vector3.Lerp(transform.forward, newForwardDirection, Time.deltaTime * speed);
         }
+
+        // transform.forward = Vector3.Lerp(transform.forward, cameraForward, Time.deltaTime);
     }
 }

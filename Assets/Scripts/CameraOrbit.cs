@@ -50,7 +50,7 @@ public class CameraOrbit : MonoBehaviour
                 scrollAmount *= (cameraDistance * 0.3f);
 
                 cameraDistance += scrollAmount;
-                cameraDistance = Mathf.Clamp(cameraDistance, 1.5f, 100f);
+                cameraDistance = Mathf.Clamp(cameraDistance, 5f, 100f);
             }
         }
 
