@@ -38,7 +38,7 @@ public class CameraOrbit : MonoBehaviour
                 localRotation.y -= Input.GetAxis("Mouse Y") * mouseSensitivity;
 
                 // Clamp y rotation to horizon and not flipping over the top              
-                localRotation.y = Mathf.Clamp(localRotation.y, 0, 90);
+                localRotation.y = Mathf.Clamp(localRotation.y, 5, 90);
             }
 
             // Scrolling input from mouse scroll
