@@ -11,11 +11,20 @@ public class Player : MonoBehaviour
     private Rigidbody playerRigid;
     private float forwardMovement = 0f;
     private Vector3 cameraForward;
+    
+    // wheels
+    private Transform[] wheels;
 
     // Start is called before the first frame update
     void Start()
     {
         playerRigid = GetComponent<Rigidbody>();
+
+        wheels = new Transform[4];
+        wheels[0] = transform.GetChild(1);
+        wheels[1] = transform.GetChild(2);
+        wheels[2] = transform.GetChild(4);
+        wheels[3] = transform.GetChild(5);
     }
 
     // Update is called once per frame
@@ -23,13 +32,19 @@ public class Player : MonoBehaviour
     {
         forwardMovement = Input.GetAxis("Vertical");
         cameraForward = new Vector3(cameraPivotTransform.forward.normalized.x, 0, cameraPivotTransform.forward.normalized.z);
+
+        foreach (Transform wheel in wheels)
+        {
+            wheel.rotation *= Quaternion.Euler(playerRigid.velocity.magnitude, 0, 0);
+        }
     }
 
     void FixedUpdate()
     {
         // Movement
         Vector3 movement = cameraForward.normalized * forwardMovement;
-        Vector3 force = movement * speed;
+        Vector3 newForwardDirection = new Vector3(movement.normalized.x, 0, movement.normalized.z);
+        Vector3 force = newForwardDirection * speed;
 
         // if we are reversing then apply less force
         if (forwardMovement < 0) 
@@ -40,9 +55,6 @@ public class Player : MonoBehaviour
         {
             playerRigid.AddForce(force);
         }
-
-        // Rotate forward direction
-        Vector3 newForwardDirection = new Vector3(movement.normalized.x, 0, movement.normalized.z);
 
         // If we are moving backwards then have the car's direction in the opposite of the force
         if (forwardMovement < 0) 
