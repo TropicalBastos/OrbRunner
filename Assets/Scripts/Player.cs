@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     public Transform cameraPivotTransform;
     public float speed = 5;
+    public float torque = 2;
     private Rigidbody playerRigid;
 
     // Start is called before the first frame update
@@ -38,14 +39,12 @@ public class Player : MonoBehaviour
             // If we are moving backwards then have the car's direction in the opposite of the force
             if (moveVertical < 0) 
             {
-                transform.forward = Vector3.Lerp(transform.forward, -newForwardDirection, Time.deltaTime * speed);
+                transform.forward = Vector3.Lerp(transform.forward, -newForwardDirection, Time.deltaTime * torque);
             }
             else
             {
-                transform.forward = Vector3.Lerp(transform.forward, newForwardDirection, Time.deltaTime * speed);
+                transform.forward = Vector3.Lerp(transform.forward, newForwardDirection, Time.deltaTime * torque);
             }
         }
-
-        // transform.forward = Vector3.Lerp(transform.forward, cameraForward, Time.deltaTime);
     }
 }

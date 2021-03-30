@@ -20,7 +20,7 @@ public class CameraOrbit : MonoBehaviour
         cameraTransform = this.transform;
         pivotTransform = this.transform.parent;
         AlignPivotWithPlayer();
-        pivotTransform.rotation = pivotTransform.rotation * Quaternion.Euler(0, 25, 0);
+        pivotTransform.rotation = pivotTransform.rotation * Quaternion.Euler(25, 0, 0);
         localRotation = pivotTransform.rotation.eulerAngles;
     }
 
