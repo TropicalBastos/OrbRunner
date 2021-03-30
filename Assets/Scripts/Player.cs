@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     public Transform cameraPivotTransform;
     public float speed = 5;
     public float torque = 2;
+    
     private Rigidbody playerRigid;
 
     // Start is called before the first frame update
