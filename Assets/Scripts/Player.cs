@@ -15,6 +15,9 @@ public class Player : MonoBehaviour
     // wheels
     private Transform[] wheels;
 
+    private GameObject exhaust;
+    private ParticleSystem exhaustSystem;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +28,10 @@ public class Player : MonoBehaviour
         wheels[1] = transform.GetChild(2);
         wheels[2] = transform.GetChild(4);
         wheels[3] = transform.GetChild(5);
+
+        GameObject exhaust = transform.Find("Exhaust").gameObject;
+        exhaustSystem = exhaust.GetComponent<ParticleSystem>();
+        exhaustSystem.Stop();
     }
 
     // Update is called once per frame
@@ -50,10 +57,27 @@ public class Player : MonoBehaviour
         if (forwardMovement < 0) 
         {
             playerRigid.AddForce(force * 0.95f);
+
+            if (exhaustSystem.isPlaying)
+            {
+                exhaustSystem.Stop();
+            }
         }
         else if (forwardMovement > 0)
         {
+            if (!exhaustSystem.isPlaying)
+            {
+                exhaustSystem.Play();
+            }
+
             playerRigid.AddForce(force);
+        }
+        else
+        {
+            if (exhaustSystem.isPlaying)
+            {
+                exhaustSystem.Stop();
+            }
         }
 
         // If we are moving backwards then have the car's direction in the opposite of the force
