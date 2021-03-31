@@ -15,9 +15,6 @@ public class Player : MonoBehaviour
     // wheels
     private Transform[] wheels;
 
-    private GameObject exhaust;
-    private ParticleSystem exhaustSystem;
-
     // Start is called before the first frame update
     void Start()
     {
