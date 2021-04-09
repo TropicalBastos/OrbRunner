@@ -56,6 +56,7 @@ public class PauseScreen : MonoBehaviour
     private void OnRestartClicked()
     {
         SceneManager.LoadScene("Game", LoadSceneMode.Single);
+        Time.timeScale = 1;
     }
 
     private void OnResumeClicked()
