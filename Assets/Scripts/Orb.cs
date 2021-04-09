@@ -5,11 +5,13 @@ using UnityEngine;
 public class Orb : MonoBehaviour
 {
     public float followSpeed = 1f;
+    public GameObject prefab;
 
     private bool collidedWithPlayer = false;
     private GameObject player;
     private ParticleSystem particles;
     private bool explosionSequenceCommenced = false;
+    private bool newOrbSpawned = false;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +28,13 @@ public class Orb : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        // spawn new orb on explosion commenced
+        if(explosionSequenceCommenced && !newOrbSpawned)
+        {
+            SpawnOrb();
+            newOrbSpawned = true;
+        }
+
         if (collidedWithPlayer)
         {
             // fade out component
@@ -40,6 +49,15 @@ public class Orb : MonoBehaviour
                 explosionSequenceCommenced = true;
             }
         }
+    }
+
+    public void SpawnOrb()
+    {
+        GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("Spawn");
+        int rand = Random.Range(0, spawnPoints.Length - 1);
+        GameObject spawnPoint = spawnPoints[rand];
+        Instantiate(prefab, spawnPoint.transform.position, spawnPoint.transform.rotation);
+        Debug.Log(spawnPoint.transform.position);
     }
 
     private void OnTriggerEnter(Collider collider) 

@@ -368,7 +368,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Runner Bean
+  m_Text: Orb Runner
 --- !u!222 &394310843
 CanvasRenderer:
   m_ObjectHideFlags: 0
