@@ -77,5 +77,10 @@ public class Player : MonoBehaviour
     public void IncrementScore(int value)
     {
         score += value;
+
+        int currentHighscore = PlayerPrefs.GetInt("Score");
+        if (score > currentHighscore) {
+            PlayerPrefs.SetInt("Score", score);
+        }
     }
 }

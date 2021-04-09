@@ -4,12 +4,21 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuUI : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
         GameObject startButtonGO = GameObject.Find("StartButton");
         Button startButton = startButtonGO.GetComponent<Button>();
         startButton.onClick.AddListener(OnStartClick);
+        Text highscore = GameObject.Find("Highscore").GetComponent<Text>();
+
+        if (PlayerPrefs.HasKey("Score"))
+        {
+            highscore.text = "HIGHSCORE: " + PlayerPrefs.GetInt("Score");
+        } 
+        else
+        {
+            PlayerPrefs.SetInt("Score", 0);
+        }
     }
 
     void OnStartClick() 
