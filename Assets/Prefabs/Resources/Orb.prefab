@@ -108,7 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01f38b2686675400fa8f0eb496061831, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followSpeed: 5
   prefab: {fileID: 8341858321860847067}
 --- !u!198 &8341858321860847065
 ParticleSystem:

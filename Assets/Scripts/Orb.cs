@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Orb : MonoBehaviour
 {
-    public float followSpeed = 1f;
-    public GameObject prefab;
-
     private bool collidedWithPlayer = false;
     private GameObject player;
     private ParticleSystem particles;
@@ -56,8 +53,7 @@ public class Orb : MonoBehaviour
         GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("Spawn");
         int rand = Random.Range(0, spawnPoints.Length - 1);
         GameObject spawnPoint = spawnPoints[rand];
-        Instantiate(prefab, spawnPoint.transform.position, spawnPoint.transform.rotation);
-        Debug.Log(spawnPoint.transform.position);
+        Instantiate(Resources.Load("Orb"), spawnPoint.transform.position, Quaternion.identity);
     }
 
     private void OnTriggerEnter(Collider collider) 
