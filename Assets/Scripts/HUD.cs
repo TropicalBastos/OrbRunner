@@ -18,6 +18,6 @@ public class HUD : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        score.text = "Score: " + player.GetScore().ToString();
+        score.text = "SCORE: " + player.GetScore().ToString();
     }
 }
