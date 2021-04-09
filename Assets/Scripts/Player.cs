@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     private Rigidbody playerRigid;
     private float forwardMovement = 0f;
     private Vector3 cameraForward;
+    private int score;
     
     // wheels
     private Transform[] wheels;
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         playerRigid = GetComponent<Rigidbody>();
+        score = 0;
 
         wheels = new Transform[4];
         wheels[0] = transform.GetChild(1);
@@ -65,5 +67,15 @@ public class Player : MonoBehaviour
         {
             transform.forward = Vector3.Slerp(transform.forward, newForwardDirection, Time.deltaTime * playerRigid.velocity.magnitude);
         }
+    }
+
+    public int GetScore()
+    {
+        return score;
+    }
+
+    public void IncrementScore(int value)
+    {
+        score += value;
     }
 }

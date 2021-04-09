@@ -25,11 +25,12 @@ public class Orb : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        // spawn new orb on explosion commenced
+        // spawn new orb on explosion commenced and increment score
         if(explosionSequenceCommenced && !newOrbSpawned)
         {
             SpawnOrb();
             newOrbSpawned = true;
+            player.GetComponent<Player>().IncrementScore(1);
         }
 
         if (collidedWithPlayer)
