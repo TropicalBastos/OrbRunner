@@ -28,6 +28,7 @@ public class CameraOrbit : MonoBehaviour
     void LateUpdate()
     {
         AlignPivotWithPlayer();
+        ConstrainCameraWithinBoundaries();
 
         if (isCameraEnabled)
         {
@@ -70,6 +71,29 @@ public class CameraOrbit : MonoBehaviour
         if (playerTransform)
         {
             pivotTransform.position = playerTransform.position;
+        }
+    }
+
+    // We need to make sure our camera doesn't go through walls
+    void ConstrainCameraWithinBoundaries()
+    {
+        RaycastHit hitInfo;
+
+        // if we have a game object tagged "Boundary" in front of the camera and between the player
+        // then we need to adjust the camera's forward vector until there are no boundaries in between
+        // the player and camera
+        var hitForwards = Physics.Raycast(playerTransform.position, -cameraTransform.forward, out hitInfo, 5f);
+        if (hitForwards && hitInfo.collider.gameObject.tag == "Boundary")
+        {
+            cameraDistance = Vector3.Distance(hitInfo.point, playerTransform.position);
+            cameraTransform.position = hitInfo.point;
+        } 
+        else if (Physics.Raycast(playerTransform.position, -cameraTransform.forward, out hitInfo, 10f))
+        {
+            if (hitInfo.collider.gameObject.tag == "Boundary")
+            {
+                cameraDistance = 10f;
+            }
         }
     }
 }
