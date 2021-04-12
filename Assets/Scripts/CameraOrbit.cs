@@ -82,8 +82,7 @@ public class CameraOrbit : MonoBehaviour
         // if we have a game object tagged "Boundary" in front of the camera and between the player
         // then we need to adjust the camera's forward vector until there are no boundaries in between
         // the player and camera
-        var hitForwards = Physics.Raycast(playerTransform.position, -cameraTransform.forward, out hitInfo, 5f);
-        if (hitForwards && hitInfo.collider.gameObject.tag == "Boundary")
+        if (Physics.Raycast(playerTransform.position, -cameraTransform.forward, out hitInfo, 5f) && hitInfo.collider.gameObject.tag == "Boundary")
         {
             cameraDistance = Vector3.Distance(hitInfo.point, playerTransform.position);
             cameraTransform.position = hitInfo.point;
