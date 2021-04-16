@@ -9,6 +9,9 @@ public class MainMenuUI : MonoBehaviour
         GameObject startButtonGO = GameObject.Find("StartButton");
         Button startButton = startButtonGO.GetComponent<Button>();
         startButton.onClick.AddListener(OnStartClick);
+        GameObject quitButtonGO = GameObject.Find("QuitButton");
+        Button quitButton = startButtonGO.GetComponent<Button>();
+        quitButton.onClick.AddListener(OnQuitClick);
         Text highscore = GameObject.Find("Highscore").GetComponent<Text>();
 
         if (PlayerPrefs.HasKey("Score"))
@@ -24,5 +27,10 @@ public class MainMenuUI : MonoBehaviour
     void OnStartClick() 
     {
         SceneManager.LoadScene("Game");
+    }
+
+    void OnQuitClick() 
+    {
+        Application.Quit();
     }
 }

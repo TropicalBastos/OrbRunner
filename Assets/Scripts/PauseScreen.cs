@@ -50,7 +50,8 @@ public class PauseScreen : MonoBehaviour
 
     private void OnQuitClicked()
     {
-        Application.Quit();
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        Time.timeScale = 1;
     }
 
     private void OnRestartClicked()
